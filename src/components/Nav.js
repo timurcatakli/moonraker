@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyleWrapper = styled.div``;
+const NavStyles = styled.nav`
+  margin-bottom: 40px;
+`;
 
-const Nav = () => (
-  <StyleWrapper>Nav functional component is working</StyleWrapper>
-);
+const Nav = () => <NavStyles>Navigation & Logo</NavStyles>;
 
 export default Nav;

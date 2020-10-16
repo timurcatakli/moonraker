@@ -1,1 +1,11 @@
-moonraker
+## SVG Illustrations
+
+- https://stories.freepik.com/illustration/payment-information/amico
+
+## Landing Page
+
+- https://www.behance.net/gallery/101145085/Saloon-Landing-Page?tracking_source=search_projects_recommended%7Clanding%20page
+
+## TODO
+
+- Give attribution for illustrations

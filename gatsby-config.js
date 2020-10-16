@@ -8,5 +8,15 @@ export default {
     siteUrl: `http://www.moonraker.com`,
     description: 'Amazon Best Sellers',
   },
-  plugins: ['gatsby-plugin-styled-components', 'gatsby-plugin-antd'],
+  plugins: [
+    'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/, // See below to configure properly
+        },
+      },
+    },
+  ],
 };
