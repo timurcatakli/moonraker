@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from 'antd';
 import HeroImage from '../assets/catalogue-amico.svg';
 
 const HeroStyles = styled.div`
@@ -22,6 +23,9 @@ const HomePage = () => (
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
+      <Button type="primary" size="large">
+        Primary Button
+      </Button>
     </div>
     <div>
       <HeroImage />
