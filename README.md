@@ -15,3 +15,5 @@
 - figure out images in gatsby
 - Give attribution for illustrations
 - Customize metadata in config
+- Update package.json name and description
+- change favicon

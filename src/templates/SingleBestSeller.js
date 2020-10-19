@@ -189,18 +189,6 @@ export const query = graphql`
         ratings_total
         link
         asin
-        sub_title {
-          text
-          link
-        }
-        price_lower {
-          value
-          currency
-        }
-        price_upper {
-          value
-          currency
-        }
       }
     }
   }

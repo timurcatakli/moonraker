@@ -1,23 +1,22 @@
 import path, { resolve } from 'path';
-import dotenv from 'dotenv';
 import axios from 'axios';
+import { books } from './sample_data';
 
-dotenv.config({ path: '.env' });
 const bestSellerCategories = [
   {
-    id: 'amazon-devices',
+    id: 1000,
     name: 'Amazon Devices & Accessories',
     description:
       'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
     external_link:
       'https://www.amazon.com/Best-Sellers/zgbs/amazon-devices/ref=zg_bs_nav_0',
-    slug: 'amazon_devices',
+    slug: 'amazon-devices',
     last_updated: null,
     icon: 'QqOutlined',
     active: true,
   },
   {
-    id: 'beauty',
+    id: 1001,
     name: 'Beauty & Personal Care',
     description:
       'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
@@ -84,7 +83,7 @@ async function turnCategoriesIntoNodes({
 
 // set up the request parameters
 const params = {
-  api_key: process.env.RAINFOREST_API_KEY,
+  api_key: '584EDA8081364F1A8F38393DD0EACB2B',
   type: 'bestsellers',
   output: 'json',
   language: 'en_US',
@@ -109,27 +108,13 @@ async function turnProductsIntoNodes({
   actions,
   createNodeId,
   createContentDigest,
-  cache,
 }) {
   console.log('➡️ Start generating product nodes');
-  // ----------------
   for (const category of bestSellerCategories) {
-    const cacheKey = category.id;
-    let cachedData = await cache.get(cacheKey);
-    if (!cachedData) {
-      console.log('👎 Cache NOT EXIST');
-      const response = await fetchEndpoint(category.external_link);
-      cachedData = {
-        [category.id]: {
-          created: Date.now(),
-          data: response.data.bestsellers,
-        },
-      };
-    } else {
-      console.log('👍 Cache EXIST');
-    }
-    console.log('🚀', cachedData);
-    for (const product of cachedData[category.id].data) {
+    // make the http GET request to Rainforest API
+    const response = await fetchEndpoint(category.external_link);
+    console.log('🚨 fetched ➡️', category.name);
+    for (const product of response.data.bestsellers) {
       // create a node for each category
       const nodeMeta = {
         id: createNodeId(`${product.id}-${product.asin}`),
@@ -147,17 +132,14 @@ async function turnProductsIntoNodes({
         ...nodeMeta,
       });
     }
-    await cache.set(cacheKey, cachedData);
   }
-
-  // ----------------
 }
 
 export async function sourceNodes(params) {
   // fetch a list of beers and source them into our gatsby API!
   await Promise.all([
     turnCategoriesIntoNodes(params),
-    turnProductsIntoNodes(params),
+    // turnProductsIntoNodes(params),
   ]);
 }
 
