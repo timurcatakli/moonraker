@@ -12,5 +12,6 @@
 
 ## TODO
 
+- figure out images in gatsby
 - Give attribution for illustrations
 - Customize metadata in config
