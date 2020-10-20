@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import { Button } from 'antd';
 import HeroImage from '../assets/catalogue-amico.svg';
 import AllBestSellers from '../components/AllBestSellers';
 
@@ -33,21 +32,24 @@ const HeroStyles = styled.div`
 
 const HomePage = (props) => {
   const allBestSellers = props.data.allBestSeller.nodes;
-  console.log(allBestSellers);
   return (
-    <HeroStyles>
+    <div>
+      <HeroStyles>
+        <div>
+          <h1>Good Hair Reflects Your Story And Your Spirit</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+        <div>
+          <HeroImage />
+        </div>
+      </HeroStyles>
       <div>
-        <h1>Good Hair Reflects Your Story And Your Spirit</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
         <AllBestSellers data={allBestSellers} />
       </div>
-      <div>
-        <HeroImage />
-      </div>
-    </HeroStyles>
+    </div>
   );
 };
 

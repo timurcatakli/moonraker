@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Ratings from 'react-ratings-declarative';
-import Img from 'gatsby-image';
 import Truncate from 'react-truncate';
 import styled from 'styled-components';
 
@@ -108,7 +107,6 @@ export const Card = (props) => {
     asin,
     price,
   } = props.data;
-  console.log(rating);
   return (
     <CardStyle>
       <div>
@@ -157,6 +155,7 @@ export const Card = (props) => {
 };
 
 export default function SingleBestSellerPage(props) {
+  console.log(props);
   const products = props.data.allProduct.nodes;
   const { pageContext } = props;
   const { name, description } = pageContext;
@@ -167,7 +166,7 @@ export default function SingleBestSellerPage(props) {
       <p>{description}</p>
       <GridStyle>
         {products.map((product) => (
-          <Card data={product} />
+          <Card key={product.id} data={product} />
         ))}
       </GridStyle>
     </BestSellerStyle>
@@ -175,8 +174,8 @@ export default function SingleBestSellerPage(props) {
 }
 
 export const query = graphql`
-  {
-    allProduct {
+  query AllProductsByCategoryQuery($identifier: String) {
+    allProduct(filter: { identifier: { eq: $identifier } }) {
       nodes {
         title
         rank
@@ -189,6 +188,8 @@ export const query = graphql`
         ratings_total
         link
         asin
+        id
+        identifier
       }
     }
   }

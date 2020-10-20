@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { FaAccessibleIcon } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const StyleWrapper = styled.div`

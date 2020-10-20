@@ -5,7 +5,7 @@ import axios from 'axios';
 dotenv.config({ path: '.env' });
 const bestSellerCategories = [
   {
-    id: 'amazon-devices',
+    identifier: 'amazon-devices',
     name: 'Amazon Devices & Accessories',
     description:
       'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
@@ -17,7 +17,7 @@ const bestSellerCategories = [
     active: true,
   },
   {
-    id: 'beauty',
+    identifier: 'beauty',
     name: 'Beauty & Personal Care',
     description:
       'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
@@ -65,7 +65,7 @@ async function turnCategoriesIntoNodes({
   for (const category of bestSellerCategories) {
     // create a node for each category
     const nodeMeta = {
-      id: createNodeId(`best-seller-${category.id}`),
+      id: createNodeId(`best-seller-${category.identifier}`),
       parent: null,
       children: [],
       internal: {
@@ -114,13 +114,13 @@ async function turnProductsIntoNodes({
   console.log('➡️ Start generating product nodes');
   // ----------------
   for (const category of bestSellerCategories) {
-    const cacheKey = category.id;
+    const cacheKey = category.identifier;
     let cachedData = await cache.get(cacheKey);
     if (!cachedData) {
       console.log('👎 Cache NOT EXIST');
       const response = await fetchEndpoint(category.external_link);
       cachedData = {
-        [category.id]: {
+        [category.identifier]: {
           created: Date.now(),
           data: response.data.bestsellers,
         },
@@ -129,7 +129,7 @@ async function turnProductsIntoNodes({
       console.log('👍 Cache EXIST');
     }
     console.log('🚀', cachedData);
-    for (const product of cachedData[category.id].data) {
+    for (const product of cachedData[category.identifier].data) {
       // create a node for each category
       const nodeMeta = {
         id: createNodeId(`${product.id}-${product.asin}`),
@@ -143,6 +143,7 @@ async function turnProductsIntoNodes({
       };
       // 3. Create a node for that category
       actions.createNode({
+        identifier: category.identifier,
         ...product,
         ...nodeMeta,
       });
@@ -170,6 +171,7 @@ async function turnCategoriesIntoPages({ graphql, actions }) {
     {
       allBestSeller(filter: { active: { eq: true } }) {
         nodes {
+          identifier
           active
           name
           slug
@@ -187,6 +189,7 @@ async function turnCategoriesIntoPages({ graphql, actions }) {
       context: {
         name: bestSeller.name,
         slug: bestSeller.slug,
+        identifier: bestSeller.identifier,
         description: bestSeller.description,
       },
     });

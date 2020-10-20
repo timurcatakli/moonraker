@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import stripes from '../assets/images/stripes.svg';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -24,13 +23,6 @@ const GlobalStyles = createGlobalStyle`
   .gatsby-image-wrapper img[src*=base64\\,] {
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
-  }
-
-  hr {
-    border: 0;
-    height: 8px;
-    background-image: url(${stripes});
-    background-size: 1500px;
   }
 
   img {
