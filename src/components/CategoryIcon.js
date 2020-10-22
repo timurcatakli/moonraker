@@ -18,11 +18,11 @@ const IconStyle = styled.div`
   color: var(--red);
 `;
 
-const CategoryIcon = ({ icon }) => {
+const CategoryIcon = ({ icon, size }) => {
   const Component = icons[icon];
   return (
     <IconStyle>
-      <Component size={32} />
+      <Component size={size} />
     </IconStyle>
   );
 };

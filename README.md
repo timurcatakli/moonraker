@@ -13,6 +13,7 @@
 ## TODO
 
 - contact page
+- 404 page
 - check eslint errors
 - Add content
 - Give attribution for illustrations

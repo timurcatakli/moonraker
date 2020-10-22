@@ -13,15 +13,13 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     background: radial-gradient(rgba(0,0,0,0.02) 46%,rgba(0,0,0,0.04) 50%);
-    color: var(--black);
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
   }
 
   body {
     max-width: 1025px;
     margin: 20px auto;
-    font-size: 2rem;
+    padding: 0px 20px
   }
 
 `;

@@ -16,42 +16,42 @@ const bestSellerCategories = [
     icon: 'BsChatDots',
     active: true,
   },
-  // {
-  //   identifier: 'beauty',
-  //   name: 'Beauty & Personal Care',
-  //   description:
-  //     'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
-  //   external_link:
-  //     'https://www.amazon.com/Best-Sellers-Beauty/zgbs/beauty/ref=zg_bs_nav_0',
-  //   slug: 'beauty',
-  //   last_updated: null,
-  //   icon: 'BsChatSquareQuote',
-  //   active: true,
-  // },
-  // {
-  //   identifier: 'books',
-  //   name: 'Books',
-  //   description:
-  //     'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
-  //   external_link:
-  //     'https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/ref=zg_bs_nav_0',
-  //   slug: 'books',
-  //   last_updated: null,
-  //   icon: 'BsColumnsGap',
-  //   active: true,
-  // },
-  // {
-  //   identifier: 'music',
-  //   name: 'CDs & Vinyl',
-  //   description:
-  //     'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
-  //   external_link:
-  //     'https://www.amazon.com/best-sellers-music-albums/zgbs/music/ref=zg_bs_nav_0',
-  //   slug: 'music',
-  //   last_updated: null,
-  //   icon: 'BsEggFried',
-  //   active: true,
-  // },
+  {
+    identifier: 'beauty',
+    name: 'Beauty & Personal Care',
+    description:
+      'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
+    external_link:
+      'https://www.amazon.com/Best-Sellers-Beauty/zgbs/beauty/ref=zg_bs_nav_0',
+    slug: 'beauty',
+    last_updated: null,
+    icon: 'BsChatSquareQuote',
+    active: true,
+  },
+  {
+    identifier: 'books',
+    name: 'Books',
+    description:
+      'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
+    external_link:
+      'https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/ref=zg_bs_nav_0',
+    slug: 'books',
+    last_updated: null,
+    icon: 'BsColumnsGap',
+    active: true,
+  },
+  {
+    identifier: 'music',
+    name: 'CDs & Vinyl',
+    description:
+      'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
+    external_link:
+      'https://www.amazon.com/best-sellers-music-albums/zgbs/music/ref=zg_bs_nav_0',
+    slug: 'music',
+    last_updated: null,
+    icon: 'BsEggFried',
+    active: true,
+  },
 ];
 
 async function turnCategoriesIntoNodes({

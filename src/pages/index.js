@@ -5,28 +5,29 @@ import HeroImage from '../assets/svgs/catalogue-amico.svg';
 import AllBestSellers from '../components/AllBestSellers';
 
 const HeroStyles = styled.div`
-  @media (min-width: 0px) and (max-width: 812px) {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-gap: 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 20px;
+
+  @media (min-width: 300px) and (max-width: 909px) {
     grid-template-columns: 1fr;
+    .hero {
+      display: none;
+    }
+
+    h1 {
+      font-size: 1.4em;
+    }
+    p {
+      letter-spacing: -0.5px;
+      line-height: 1.4em;
+      font-size: 1em;
+    }
   }
 
-  @media (min-width: 813px) and (max-width: 1024px) {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-gap: 20px;
+  @media (min-width: 910px) {
     grid-template-columns: 1fr 1fr;
-  }
-
-  @media (min-width: 1025px) {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: 1.5fr 1.5fr;
-    grid-gap: 20px;
   }
 `;
 
@@ -36,13 +37,13 @@ const HomePage = (props) => {
     <div>
       <HeroStyles>
         <div>
-          <h1>Good Hair Reflects Your Story And Your Spirit---</h1>
+          <h1>Good Hair Reflects Your Story And Your Spirit</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        <div>
+        <div className="hero">
           <HeroImage />
         </div>
       </HeroStyles>
