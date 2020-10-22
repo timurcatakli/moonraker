@@ -13,6 +13,7 @@
 ## TODO
 
 - contact page
+- check eslint errors
 - Add content
 - Give attribution for illustrations
 - Customize metadata in config

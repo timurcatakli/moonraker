@@ -1,4 +1,4 @@
-import path, { resolve } from 'path';
+import path from 'path';
 import dotenv from 'dotenv';
 import axios from 'axios';
 
