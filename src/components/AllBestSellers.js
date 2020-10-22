@@ -31,6 +31,7 @@ const CardStyle = styled.div`
   padding: 20px;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
 `;
 
 const Category = (props) => {

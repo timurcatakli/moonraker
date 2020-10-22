@@ -36,7 +36,7 @@ const HomePage = (props) => {
     <div>
       <HeroStyles>
         <div>
-          <h1>Good Hair Reflects Your Story And Your Spirit</h1>
+          <h1>Good Hair Reflects Your Story And Your Spirit---</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
