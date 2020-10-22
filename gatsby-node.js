@@ -13,7 +13,7 @@ const bestSellerCategories = [
       'https://www.amazon.com/Best-Sellers/zgbs/amazon-devices/ref=zg_bs_nav_0',
     slug: 'amazon_devices',
     last_updated: null,
-    icon: 'QqOutlined',
+    icon: 'BsChatDots',
     active: true,
   },
   {
@@ -25,33 +25,33 @@ const bestSellerCategories = [
       'https://www.amazon.com/Best-Sellers-Beauty/zgbs/beauty/ref=zg_bs_nav_0',
     slug: 'beauty',
     last_updated: null,
-    icon: 'QqOutlined',
+    icon: 'BsChatSquareQuote',
     active: true,
   },
-  // {
-  //   id: 1002,
-  //   name: 'Books',
-  //   description:
-  //     'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
-  //   external_link:
-  //     'https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/ref=zg_bs_nav_0',
-  //   slug: 'books',
-  //   last_updated: null,
-  //   icon: 'QqOutlined',
-  //   active: true,
-  // },
-  // {
-  //   id: 1003,
-  //   name: 'CDs & Vinyl',
-  //   description:
-  //     'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
-  //   external_link:
-  //     'https://www.amazon.com/best-sellers-music-albums/zgbs/music/ref=zg_bs_nav_0',
-  //   slug: 'music',
-  //   last_updated: null,
-  //   icon: 'QqOutlined',
-  //   active: true,
-  // },
+  {
+    identifier: 'books',
+    name: 'Books',
+    description:
+      'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
+    external_link:
+      'https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/ref=zg_bs_nav_0',
+    slug: 'books',
+    last_updated: null,
+    icon: 'BsColumnsGap',
+    active: true,
+  },
+  {
+    identifier: 'music',
+    name: 'CDs & Vinyl',
+    description:
+      'Best Seller single category description - Turn on lights, adjust thermostats, lock doors, and more with compatible connected devices. Create routines to start and end your day.',
+    external_link:
+      'https://www.amazon.com/best-sellers-music-albums/zgbs/music/ref=zg_bs_nav_0',
+    slug: 'music',
+    last_updated: null,
+    icon: 'BsEggFried',
+    active: true,
+  },
 ];
 
 async function turnCategoriesIntoNodes({

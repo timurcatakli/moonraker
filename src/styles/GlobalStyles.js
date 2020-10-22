@@ -7,9 +7,11 @@ const GlobalStyles = createGlobalStyle`
     --yellow: #ffc600;
     --white: #fff;
     --grey: #efefef;
+    --darkgrey: darkgrey;
+    --radius: 6px;
   }
   html {
-    background-color: #ffffff;    
+    background: radial-gradient(rgba(0,0,0,0.02) 46%,rgba(0,0,0,0.04) 50%);
     font-size: 12px;
     color: var(--black);
     text-rendering: optimizeLegibility;

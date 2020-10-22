@@ -1,20 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Ratings from 'react-ratings-declarative';
 import Truncate from 'react-truncate';
 import styled from 'styled-components';
+import ButtonsList from '../components/ButtonsList';
 
 const BestSellerStyle = styled.div``;
+const HeaderStyle = styled.div`
+  display: grid;
+
+  @media (min-width: 0px) and (max-width: 812px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    .title {
+      text-align: center;
+    }
+    .date {
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 813px) and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1025px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-end;
+    .date {
+      justify-self: flex-end;
+      font-size: 18px;
+      text-align: right;
+    }
+  }
+`;
 
 const GridStyle = styled.div`
-  --radius: 6px;
   display: grid;
   gap: 30px;
-  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 0px) and (max-width: 812px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 813px) and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1025px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const CardStyle = styled.div`
   cursor: pointer;
+  background-color: white;
   border: 1px solid var(--grey);
   height: 200px;
   padding: 20px;
@@ -96,6 +137,7 @@ const RatingsStyle = styled.div`
     color: var(--yellow);
   }
 `;
+
 export const Card = (props) => {
   const {
     title,
@@ -119,34 +161,33 @@ export const Card = (props) => {
         <div className="title">
           <Truncate lines={2}>{title}</Truncate>
           <br />
-          {rating !== null && (
-            <RatingsStyle>
-              <div>
-                <Ratings
-                  rating={rating}
-                  widgetDimensions="20px"
-                  widgetSpacings="1px"
-                >
-                  <Ratings.Widget widgetRatedColor="#ffc600" />
-                  <Ratings.Widget widgetRatedColor="#ffc600" />
-                  <Ratings.Widget widgetRatedColor="#ffc600" />
-                  <Ratings.Widget widgetRatedColor="#ffc600" />
-                  <Ratings.Widget widgetRatedColor="#ffc600" />
-                </Ratings>
-              </div>
-              <div>{rating} / 5</div>
-            </RatingsStyle>
-          )}
+
+          <RatingsStyle>
+            <div>
+              <Ratings
+                rating={rating || 0}
+                widgetDimensions="20px"
+                widgetSpacings="1px"
+              >
+                <Ratings.Widget widgetRatedColor="#ffc600" />
+                <Ratings.Widget widgetRatedColor="#ffc600" />
+                <Ratings.Widget widgetRatedColor="#ffc600" />
+                <Ratings.Widget widgetRatedColor="#ffc600" />
+                <Ratings.Widget widgetRatedColor="#ffc600" />
+              </Ratings>
+            </div>
+            <div>{rating || 0} / 5</div>
+          </RatingsStyle>
         </div>
         <div className="body">
           <div className="body-row">
             <div className="label">price:</div>
             <div className="label">total reviews:</div>
             <div className="value">
-              <strong>{price.value}</strong>
-              <sup className="usd">{price.currency}</sup>
+              <strong>{price?.value || 'n/a'}</strong>
+              <sup className="usd">{price?.currency}</sup>
             </div>
-            <div className="value">{ratings_total}</div>
+            <div className="value">{ratings_total || 'n/a'}</div>
           </div>
         </div>
       </div>
@@ -155,17 +196,71 @@ export const Card = (props) => {
 };
 
 export default function SingleBestSellerPage(props) {
-  console.log(props);
-  const products = props.data.allProduct.nodes;
-  const { pageContext } = props;
+  const [filter, setFilter] = useState({});
+  const { pageContext, data } = props;
   const { name, description } = pageContext;
+  const dir = filter.sortDirection === 'asc' ? 1 : -1;
+  const buildDate = data.currentBuildDate.currentDate;
+
+  const handleFilterChange = (params) => {
+    setFilter({
+      ...filter,
+      ...params,
+    });
+  };
+
+  const comparePrices = (a, b) => {
+    const priceA = a.price?.value || 0;
+    const priceB = b.price?.value || 0;
+    if (priceA < priceB) {
+      return dir * -1;
+    }
+    if (priceA > priceB) {
+      return dir;
+    }
+    return 0;
+  };
+
+  const compareValues = (a, b) => {
+    const valueA = a[filter.sortValue] || 0;
+    const valueB = b[filter.sortValue] || 0;
+
+    if (valueA < valueB) {
+      return dir * -1;
+    }
+    if (valueA > valueB) {
+      return dir;
+    }
+    return 0;
+  };
+
+  const filteredProducts = props.data.allProduct.nodes;
+  if (filter !== null) {
+    switch (filter.sortValue) {
+      case 'price':
+        filteredProducts.sort(comparePrices);
+        break;
+      default:
+        filteredProducts.sort(compareValues);
+    }
+  }
   return (
     <BestSellerStyle>
-      <h5>Top 50 Amazon Best Sellers</h5>
-      <h1>{name}</h1>
+      <HeaderStyle>
+        <div className="title">
+          <h5>Top 50 Amazon Best Sellers</h5>
+          <h1>{name}</h1>
+        </div>
+        <div className="date">
+          last updated:
+          <br />
+          <strong>{buildDate}</strong>
+        </div>
+      </HeaderStyle>
       <p>{description}</p>
+      <ButtonsList handleAction={handleFilterChange} filter={filter} />
       <GridStyle>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Card key={product.id} data={product} />
         ))}
       </GridStyle>
@@ -191,6 +286,9 @@ export const query = graphql`
         id
         identifier
       }
+    }
+    currentBuildDate(currentDate: {}) {
+      currentDate
     }
   }
 `;

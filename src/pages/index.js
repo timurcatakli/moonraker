@@ -1,19 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import HeroImage from '../assets/catalogue-amico.svg';
+import HeroImage from '../assets/svgs/catalogue-amico.svg';
 import AllBestSellers from '../components/AllBestSellers';
 
 const HeroStyles = styled.div`
-  div:nth-of-type(1) {
-  }
-  div:nth-of-type(2) {
+  @media (min-width: 0px) and (max-width: 812px) {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
   }
 
-  @media (max-width: 500px) {
-  }
-
-  @media (min-width: 501px) and (max-width: 1024px) {
+  @media (min-width: 813px) and (max-width: 1024px) {
     display: grid;
     justify-content: center;
     align-items: center;
@@ -62,6 +62,7 @@ export const query = graphql`
         active
         name
         slug
+        icon
       }
     }
   }

@@ -8,12 +8,22 @@
 
 ## React Icons
 
-- https://react-icons.github.io/icons?name=bs
+- https://react-icons.github.io/react-icons/
 
 ## TODO
 
-- figure out images in gatsby
+- Add content
 - Give attribution for illustrations
 - Customize metadata in config
 - Update package.json name and description
 - change favicon
+- Add last updated date and time to home
+- Add updated daily notice...
+- SEO
+- Analytics
+- ✅ make home responsive
+- ✅ add Top Ranked first
+- Back home button
+- ✅ Add last updated date and time
+- ✅ Fix buttons
+- ✅ Make SingleBestSeller responsive
