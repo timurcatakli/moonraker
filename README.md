@@ -12,6 +12,7 @@
 
 ## TODO
 
+- contact page
 - Add content
 - Give attribution for illustrations
 - Customize metadata in config
