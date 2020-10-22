@@ -1,6 +1,5 @@
 {
   "name": "project_name",
-  "type": "module",
   "private": true,
   "description": "project description goes here",
   "version": "0.1.0",
