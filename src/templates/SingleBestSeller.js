@@ -5,7 +5,16 @@ import Truncate from 'react-truncate';
 import styled from 'styled-components';
 import ButtonsList from '../components/ButtonsList';
 
-const BestSellerStyle = styled.div``;
+const BestSellerStyle = styled.div`
+  @media (min-width: 300px) and (max-width: 909px) {
+    p {
+      letter-spacing: -0.5px;
+      line-height: 1.2em;
+      font-size: 0.8em;
+    }
+  }
+`;
+
 const HeaderStyle = styled.div`
   display: grid;
   @media (min-width: 300px) and (max-width: 909px) {
@@ -14,23 +23,18 @@ const HeaderStyle = styled.div`
     h1 {
       font-size: 1.4em;
     }
-    p {
-      letter-spacing: -0.5px;
-      line-height: 1.2em;
-      font-size: 1em;
-    }
     .date {
       margin: 10px 0px;
       font-size: 18px;
-      text-align: center;
+      text-align: right;
     }
     .title {
-      text-align: center;
     }
   }
 
   @media (min-width: 910px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    align-items: flex-end;
     .date {
       justify-self: flex-end;
       font-size: 18px;
@@ -42,17 +46,12 @@ const HeaderStyle = styled.div`
 const GridStyle = styled.div`
   display: grid;
   gap: 30px;
-
-  @media (min-width: 0px) and (max-width: 812px) {
+  @media (min-width: 300px) and (max-width: 909px) {
     grid-template-columns: 1fr;
   }
 
-  @media (min-width: 813px) and (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 1025px) {
-    grid-template-columns: 1fr 1fr;
+  @media (min-width: 910px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
@@ -129,15 +128,11 @@ const CardStyle = styled.div`
 `;
 
 const RatingsStyle = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 10px;
-  align-items: baseline;
-
-  div:nth-of-type(even) {
+  .rating {
     font-size: 14px;
     font-weight: bold;
     color: var(--yellow);
+    margin-left: 10px;
   }
 `;
 
@@ -166,7 +161,7 @@ export const Card = (props) => {
           <br />
 
           <RatingsStyle>
-            <div>
+            <div className="stars">
               <Ratings
                 rating={rating || 0}
                 widgetDimensions="20px"
@@ -178,8 +173,8 @@ export const Card = (props) => {
                 <Ratings.Widget widgetRatedColor="#ffc600" />
                 <Ratings.Widget widgetRatedColor="#ffc600" />
               </Ratings>
+              <span className="rating">{rating || 0} / 5</span>
             </div>
-            <div>{rating || 0} / 5</div>
           </RatingsStyle>
         </div>
         <div className="body">
@@ -260,13 +255,13 @@ export default function SingleBestSellerPage(props) {
           <strong>{buildDate}</strong>
         </div>
       </HeaderStyle>
-      {/* <p>{description}</p>
+      <p>{description}</p>
       <ButtonsList handleAction={handleFilterChange} filter={filter} />
       <GridStyle>
         {filteredProducts.map((product) => (
           <Card key={product.id} data={product} />
         ))}
-      </GridStyle> */}
+      </GridStyle>
     </BestSellerStyle>
   );
 }
