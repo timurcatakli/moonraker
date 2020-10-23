@@ -4,11 +4,16 @@ import Button from './Button';
 
 const StyleWrapper = styled.div`
   display: grid;
-  @media (min-width: 300px) and (max-width: 909px) {
+
+  @media (min-width: 300px) and (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 910px) {
+  @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
   }
 

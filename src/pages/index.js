@@ -37,10 +37,11 @@ const HomePage = (props) => {
     <div>
       <HeroStyles>
         <div>
-          <h1>Good Hair Reflects Your Story And Your Spirit</h1>
+          <h1>Save time & money by simply browsing the bestsellers...</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            No more losing time researching the bestseller of a category,
+            finding the most reviewed product or the highest rated product. Pick
+            a category and discover. List updated daily...
           </p>
         </div>
         <div className="hero">

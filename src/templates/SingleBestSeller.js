@@ -57,38 +57,27 @@ const GridStyle = styled.div`
 
 const CardStyle = styled.div`
   cursor: pointer;
-  background-color: white;
   border: 1px solid var(--grey);
-  height: 200px;
+  height: 480px;
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
   border-radius: var(--radius);
   box-shadow: 0 4px 0px rgba(0, 0, 0, -0.75), 0 4px 2px rgba(0, 0, 0, 0.12);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: grid;
-  grid-template-columns: 200px 1fr;
-  align-items: flex-start;
   gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px fit-content(100%) 40px fit-content(100%);
+  justify-content: center;
+  align-items: center;
 
   :hover {
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.22);
   }
 
-  .image {
-    background-color: tomato;
-    display: inline-flex;
-    position: relative;
-    width: 200px;
-    height: 200px;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-  }
-
   .badge {
-    left: -21px;
-    top: -20px;
-    position: absolute;
-    display: inline-flex;
     width: 40px;
     height: 40px;
     border-bottom-right-radius: var(--radius);
@@ -101,38 +90,58 @@ const CardStyle = styled.div`
     line-height: 28px;
   }
 
-  .title {
-    margin-bottom: 20px;
+  .image {
+    text-align: center;
+    position: relative;
+    width: 100%; //for ie 6
   }
 
-  .body {
-    .body-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      color: var(--black);
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0px;
-
-      .label {
-        font-size: 16px;
-      }
-      .value {
-        font-size: 28px;
-      }
-      .usd {
-        font-size: 12px;
-      }
-    }
+  h2 {
+    position: absolute;
+    top: -10px;
+    left: -16px;
+    width: 100%;
+    background-color: var(--grey);
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    border-radius: 999px;
+    padding: 6px;
+    font-size: 32px;
+  }
+  .title {
+    align-self: flex-start;
+    text-align: center;
+    font-size: 0.8em;
   }
 `;
 
 const RatingsStyle = styled.div`
+  justify-self: center;
   .rating {
     font-size: 14px;
     font-weight: bold;
     color: var(--yellow);
     margin-left: 10px;
+  }
+`;
+
+const PriceReviewStyle = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  sup {
+    font-size: 0.6em;
+  }
+  .label {
+    font-size: 0.6em;
+    align-self: center;
+    justify-self: center;
+    color: var(--yellow);
+  }
+  .price-value,
+  .reviews-value {
+    align-self: center;
+    justify-self: center;
   }
 `;
 
@@ -148,47 +157,39 @@ export const Card = (props) => {
     price,
   } = props.data;
   return (
-    <CardStyle>
-      <div>
-        <span className="image">
-          <span className="badge">{rank}</span>
-          <img src={image} alt={title} />
-        </span>
+    <CardStyle image={image}>
+      <div className="image">
+        <img src={image} alt={title} />
+        <h2>{rank}</h2>
       </div>
-      <div>
-        <div className="title">
-          <Truncate lines={2}>{title}</Truncate>
-          <br />
-
-          <RatingsStyle>
-            <div className="stars">
-              <Ratings
-                rating={rating || 0}
-                widgetDimensions="20px"
-                widgetSpacings="1px"
-              >
-                <Ratings.Widget widgetRatedColor="#ffc600" />
-                <Ratings.Widget widgetRatedColor="#ffc600" />
-                <Ratings.Widget widgetRatedColor="#ffc600" />
-                <Ratings.Widget widgetRatedColor="#ffc600" />
-                <Ratings.Widget widgetRatedColor="#ffc600" />
-              </Ratings>
-              <span className="rating">{rating || 0} / 5</span>
-            </div>
-          </RatingsStyle>
-        </div>
-        <div className="body">
-          <div className="body-row">
-            <div className="label">price:</div>
-            <div className="label">total reviews:</div>
-            <div className="value">
-              <strong>{price?.value || 'n/a'}</strong>
-              <sup className="usd">{price?.currency}</sup>
-            </div>
-            <div className="value">{ratings_total || 'n/a'}</div>
-          </div>
-        </div>
+      <div className="title">
+        <Truncate lines={3}>{title}</Truncate>
       </div>
+      <RatingsStyle>
+        <div className="stars">
+          <Ratings
+            rating={rating || 0}
+            widgetDimensions="20px"
+            widgetSpacings="1px"
+          >
+            <Ratings.Widget widgetRatedColor="#ffc600" />
+            <Ratings.Widget widgetRatedColor="#ffc600" />
+            <Ratings.Widget widgetRatedColor="#ffc600" />
+            <Ratings.Widget widgetRatedColor="#ffc600" />
+            <Ratings.Widget widgetRatedColor="#ffc600" />
+          </Ratings>
+          <span className="rating">{rating || 0} / 5</span>
+        </div>
+      </RatingsStyle>
+      <PriceReviewStyle>
+        <div className="price-value">
+          <strong>{price?.value || 'n/a'}</strong>
+          <sup className="usd">{price?.currency}</sup>
+        </div>
+        <div className="reviews-value">{ratings_total || 'n/a'}</div>
+        <div className="label">price</div>
+        <div className="label">total reviews</div>
+      </PriceReviewStyle>
     </CardStyle>
   );
 };
@@ -246,7 +247,7 @@ export default function SingleBestSellerPage(props) {
     <BestSellerStyle>
       <HeaderStyle>
         <div className="title">
-          <h5>Top 50 Amazon Best Sellers</h5>
+          <h5>Top 50 Best Sellers</h5>
           <h1>{name}</h1>
         </div>
         <div className="date">
@@ -255,7 +256,6 @@ export default function SingleBestSellerPage(props) {
           <strong>{buildDate}</strong>
         </div>
       </HeaderStyle>
-      <p>{description}</p>
       <ButtonsList handleAction={handleFilterChange} filter={filter} />
       <GridStyle>
         {filteredProducts.map((product) => (

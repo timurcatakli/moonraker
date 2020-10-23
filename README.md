@@ -12,21 +12,22 @@
 
 ## TODO
 
+- Add last updated date and time to home description
+- Add updated daily notice...
+- ✅ Give attribution for illustrations
+  // ----------
+- change favicon
 - contact page
 - 404 page
 - check eslint errors
 - Add content
-- Give attribution for illustrations
 - Customize metadata in config
 - Update package.json name and description
-- change favicon
-- Add last updated date and time to home
-- Add updated daily notice...
 - SEO
 - Analytics
+- Back home button
 - ✅ make home responsive
 - ✅ add Top Ranked first
-- Back home button
 - ✅ Add last updated date and time
 - ✅ Fix buttons
 - ✅ Make SingleBestSeller responsive
