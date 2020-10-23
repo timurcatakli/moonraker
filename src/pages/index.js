@@ -21,7 +21,7 @@ const HeroStyles = styled.div`
     }
     p {
       letter-spacing: -0.5px;
-      line-height: 1.4em;
+      line-height: 1.2em;
       font-size: 1em;
     }
   }

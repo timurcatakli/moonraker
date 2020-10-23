@@ -8,26 +8,29 @@ import ButtonsList from '../components/ButtonsList';
 const BestSellerStyle = styled.div``;
 const HeaderStyle = styled.div`
   display: grid;
-
-  @media (min-width: 0px) and (max-width: 812px) {
+  @media (min-width: 300px) and (max-width: 909px) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    align-items: center;
+    h1 {
+      font-size: 1.4em;
+    }
+    p {
+      letter-spacing: -0.5px;
+      line-height: 1.2em;
+      font-size: 1em;
+    }
+    .date {
+      margin: 10px 0px;
+      font-size: 18px;
+      text-align: center;
+    }
     .title {
       text-align: center;
     }
-    .date {
-      margin-top: 20px;
-      text-align: center;
-    }
   }
 
-  @media (min-width: 813px) and (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 1025px) {
+  @media (min-width: 910px) {
     grid-template-columns: 1fr 1fr;
-    align-items: flex-end;
     .date {
       justify-self: flex-end;
       font-size: 18px;
@@ -257,13 +260,13 @@ export default function SingleBestSellerPage(props) {
           <strong>{buildDate}</strong>
         </div>
       </HeaderStyle>
-      <p>{description}</p>
+      {/* <p>{description}</p>
       <ButtonsList handleAction={handleFilterChange} filter={filter} />
       <GridStyle>
         {filteredProducts.map((product) => (
           <Card key={product.id} data={product} />
         ))}
-      </GridStyle>
+      </GridStyle> */}
     </BestSellerStyle>
   );
 }
